@@ -9,7 +9,7 @@
     "preview": "vite preview",
     "prepare": "husky install",
     "lint": "eslint .",
-    "lint:fix": "eslint --fix --ext .js,.jsx .",
+    "lint:fix": "eslint --fix --ext .js,.jsx,.ts,.tsx .",
     "format": "prettier --write ."
   },
   "husky": {
