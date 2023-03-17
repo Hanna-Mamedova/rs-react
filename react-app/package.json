@@ -9,15 +9,19 @@
     "preview": "vite preview",
     "prepare": "husky install",
     "lint": "eslint .",
-    "lint:fix": "eslint --fix --ext .js,.jsx ."
+    "lint:fix": "eslint --fix --ext .js,.jsx .",
+    "format": "prettier --write ."
   },
   "husky": {
     "hooks": {
       "applypatch-msg": "echo '[Husky] applypatch-msg'",
       "pre-applypatch": "'[Husky] pre-applypatch'",
       "post-applypatch": "echo '[Husky] post-applypatch'",
-      "pre-commit": "echo '[Husky] pre-commit'"
+      "pre-commit": "lint-staged"
     }
+  },
+  "lint-staged": {
+    "*": "prettier --write"
   },
   "dependencies": {
     "@types/react-router-dom": "5.3.3",
