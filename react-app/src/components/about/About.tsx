@@ -1,8 +1,9 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import { Component, ReactNode } from 'react';
 
-function About() {
-  return <div>About</div>;
+class About extends Component {
+  render(): ReactNode {
+    return <div>About</div>;
+  }
 }
 
 export default About;
