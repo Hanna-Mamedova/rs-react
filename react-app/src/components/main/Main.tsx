@@ -1,8 +1,10 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React, { Component } from 'react';
+import SearchBar from './search-bar/SearchBar';
 
-function Main() {
-  return <div>Main</div>;
+class Main extends Component {
+  render(): React.ReactNode {
+    return <SearchBar />;
+  }
 }
 
 export default Main;
