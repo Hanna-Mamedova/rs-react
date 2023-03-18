@@ -1,9 +1,9 @@
-import { Component } from 'react';
+import { Component, ReactNode } from 'react';
 import { NavLink } from 'react-router-dom';
 import './header.css';
 
 class Header extends Component {
-  render() {
+  render(): ReactNode {
     return (
       <header className="header">
         <nav>

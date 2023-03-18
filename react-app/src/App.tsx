@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { Component, ReactNode } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import About from './components/about/About';
@@ -9,7 +9,7 @@ import NotFound from './components/not-found/NotFound';
 import './App.css';
 
 class App extends Component {
-  render() {
+  render(): ReactNode {
     return (
       <BrowserRouter>
         <Routes>
