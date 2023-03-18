@@ -1,9 +1,23 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
+import { NavLink } from 'react-router-dom';
 import './header.css';
 
 class Header extends Component {
   render() {
-    return <div>HEADER</div>;
+    return (
+      <header className="header">
+        <nav>
+          <ul className="nav">
+            <li>
+              <NavLink to="/">About</NavLink>
+            </li>
+            <li>
+              <NavLink to="/main">Main</NavLink>
+            </li>
+          </ul>
+        </nav>
+      </header>
+    );
   }
 }
 
