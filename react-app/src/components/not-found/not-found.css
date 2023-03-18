@@ -36,23 +36,11 @@
 }
 
 .permission_denied h1 {
-    text-align: center;
     color: #fff;
-    font-family: "Dosis", sans-serif;
-    font-size: 100px;
-    margin: 0px;
-    font-weight: 800;
 }
 
 .permission_denied h3 {
-    text-align: center;
     color: #fff;
-    font-size: 19px;
-    line-height: 23px;
-    max-width: 330px;
-    margin: 0px auto 30px auto;
-    font-family: "Dosis", sans-serif;
-    font-weight: 400;
 }
 
 .permission_denied h3 span {
