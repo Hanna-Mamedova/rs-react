@@ -1,8 +1,9 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import { Component, ReactNode } from 'react';
 
-function NotFound() {
-  return <div>NotFound</div>;
+class NotFound extends Component {
+  render(): ReactNode {
+    return <div>NotFound</div>;
+  }
 }
 
 export default NotFound;
