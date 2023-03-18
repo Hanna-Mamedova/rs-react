@@ -1,8 +1,10 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React, { Component } from 'react';
+import './header.css';
 
-function Header() {
-  return <div>HEADER</div>;
+class Header extends Component {
+  render() {
+    return <div>HEADER</div>;
+  }
 }
 
 export default Header;
