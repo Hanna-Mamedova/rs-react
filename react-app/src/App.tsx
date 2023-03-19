@@ -2,7 +2,7 @@ import { Component, ReactNode } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import About from './components/about/About';
-import Layout from './components/layout/layout';
+import Layout from './components/layout/Layout';
 import Main from './components/main/Main';
 import NotFound from './components/not-found/NotFound';
 
