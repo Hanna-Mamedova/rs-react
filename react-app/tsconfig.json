@@ -19,6 +19,6 @@
     "noImplicitAny": true,
     "jsx": "react-jsx"
   },
-  "include": ["./src/**/*", "styled.d.ts", ".eslintrc.json"],
+  "include": ["./src/**/*", "styled.d.ts", ".eslintrc.json", "vite.config.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
