@@ -1,0 +1,10 @@
+.about {
+    margin-top: 2rem;
+}
+
+.about-content {
+    display: flex;
+    margin: 0 auto;
+    max-width: 860px;
+    width: 100%;
+}
