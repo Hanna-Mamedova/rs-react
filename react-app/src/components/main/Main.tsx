@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
+import Cards from './cards/Cards';
 import SearchBar from './search-bar/SearchBar';
 
 class Main extends Component {
   render(): React.ReactNode {
-    return <SearchBar />;
+    return (
+      <div>
+        <SearchBar />
+        <Cards />
+      </div>
+    );
   }
 }
 
