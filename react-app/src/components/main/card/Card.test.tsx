@@ -10,7 +10,7 @@ describe('Card.tsx', () => {
       price: 12,
       title: 'The Title',
       author: 'The Author',
-      cover_url: './src/assets/images/book1.png',
+      cover_url: './src/assets/book1.png',
       genre: 'The Genre',
       language: 'eng',
       created_date: '12.12.2022',
