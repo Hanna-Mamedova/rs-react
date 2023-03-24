@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import AddBookForm from '../../components/add-book-form/AddBookForm';
+import AddBookFormContainer from '../../components/add-book-form/AddBookFormContainer';
 
 import './Forms.css';
 
@@ -9,7 +9,7 @@ class Forms extends Component {
     return (
       <div className="forms">
         <h1>Add book</h1>
-        <AddBookForm />
+        <AddBookFormContainer />
       </div>
     );
   }
