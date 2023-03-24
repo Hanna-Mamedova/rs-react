@@ -2,7 +2,7 @@ import { Component, ReactNode } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
-import './Search-bar.css';
+import './SearchBar.css';
 
 const SEARCH_VALUE_KEY = 'SAVE_SEARCH';
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import AddBookForm from '../../components/add-book-form/Add-book-form';
+import AddBookForm from '../../components/add-book-form/AddBookForm';
 
 import './Forms.css';
 
