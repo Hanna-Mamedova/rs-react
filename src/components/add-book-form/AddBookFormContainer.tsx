@@ -6,6 +6,7 @@ class AddBookFormContainer extends Component {
   authorRef = createRef<HTMLInputElement>();
   priceRef = createRef<HTMLInputElement>();
   dateRef = createRef<HTMLInputElement>();
+  dropdownRef = createRef<HTMLSelectElement>();
 
   handleSubmit(event: React.FormEvent<HTMLFormElement>): void {
     event.preventDefault();
@@ -13,6 +14,7 @@ class AddBookFormContainer extends Component {
     console.log('auth', this.authorRef.current?.value);
     console.log('price', this.priceRef.current?.value);
     console.log('date', this.dateRef.current?.value);
+    console.log('dropdown', this.dropdownRef.current?.value);
   }
 
   render(): JSX.Element {
@@ -22,6 +24,7 @@ class AddBookFormContainer extends Component {
         authorRef={this.authorRef}
         priceRef={this.priceRef}
         dateRef={this.dateRef}
+        dropdownRef={this.dropdownRef}
         handleSubmit={(e) => this.handleSubmit(e)}
       />
     );
