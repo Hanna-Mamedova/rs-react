@@ -3,7 +3,7 @@ import { Component, ReactNode } from 'react';
 import Card from '../card/Card';
 import { books } from './cards-data';
 
-import './cards.css';
+import './Cards.css';
 
 type CardsProps = Record<string, never>;
 type CardsState = {
