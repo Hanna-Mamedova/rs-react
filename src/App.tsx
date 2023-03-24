@@ -1,10 +1,10 @@
 import { Component, ReactNode } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import About from './components/about/About';
+import About from './pages/about/About';
 import Layout from './components/layout/Layout';
-import Main from './components/main/Main';
-import NotFound from './components/not-found/NotFound';
+import Main from './pages/main/Main';
+import NotFound from './pages/not-found/NotFound';
 
 import './App.css';
 

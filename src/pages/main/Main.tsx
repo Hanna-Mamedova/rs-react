@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Cards from './cards/Cards';
-import SearchBar from './search-bar/SearchBar';
+import Cards from '../../components/main/cards/Cards';
+import SearchBar from '../../components/main/search-bar/SearchBar';
 
 class Main extends Component {
   render(): React.ReactNode {

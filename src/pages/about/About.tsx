@@ -1,6 +1,6 @@
 import { Component, ReactNode } from 'react';
 
-import './about.css';
+import './About.css';
 
 class About extends Component {
   render(): ReactNode {
