@@ -14,6 +14,9 @@ class Header extends Component {
             <li>
               <NavLink to="/main">Main</NavLink>
             </li>
+            <li>
+              <NavLink to="/forms">Forms</NavLink>
+            </li>
           </ul>
         </nav>
       </header>
