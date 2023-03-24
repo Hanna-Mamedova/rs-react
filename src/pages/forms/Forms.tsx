@@ -4,7 +4,11 @@ import './Forms.css';
 
 class Forms extends Component {
   render(): React.ReactNode {
-    return <div>Forms!</div>;
+    return (
+      <div className="forms">
+        <h1>Add book</h1>
+      </div>
+    );
   }
 }
 
