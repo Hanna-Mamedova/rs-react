@@ -1,6 +1,7 @@
-import Dropdown from '../dropdown/Dropdown';
-
 import { Component, ReactNode } from 'react';
+
+import Dropdown from '../dropdown/Dropdown';
+import CheckboxList, { RefsType } from '../checkbox-list/CheckboxList';
 
 interface AddBookProps {
   titleRef: React.RefObject<HTMLInputElement>;
@@ -8,14 +9,24 @@ interface AddBookProps {
   priceRef: React.RefObject<HTMLInputElement>;
   dateRef: React.RefObject<HTMLInputElement>;
   dropdownRef: React.RefObject<HTMLSelectElement>;
-  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  // checkboxRef: React.RefObject<HTMLFieldSetElement>;
+  handleSubmit: (e: React.FormEvent<HTMLFormElement>, checkboxes: RefsType) => void;
 }
 
 class AddBookForm extends Component<AddBookProps> {
+  checkboxes: RefsType = {};
+
+  getCheckboxes(checkboxes: RefsType): void {
+    this.checkboxes = { ...checkboxes };
+  }
+
   render(): ReactNode {
     return (
       <div className="form">
-        <form onSubmit={(e) => this.props.handleSubmit(e)} className="form-container">
+        <form
+          onSubmit={(e) => this.props.handleSubmit(e, this.checkboxes)}
+          className="form-container"
+        >
           <div>
             <label className="label" htmlFor="title">
               Title:{' '}
@@ -47,6 +58,7 @@ class AddBookForm extends Component<AddBookProps> {
             <input className="input" type="select" id="genre" />
           </div>
           <Dropdown innerRef={this.props.dropdownRef} />
+          <CheckboxList onCheckboxClick={(refs) => this.getCheckboxes(refs)} />
           {/* <div>
             <label className="label" htmlFor="language">
               Language:{' '}
