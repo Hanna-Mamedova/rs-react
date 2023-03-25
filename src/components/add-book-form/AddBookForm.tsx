@@ -1,7 +1,12 @@
 import { Component, ReactNode } from 'react';
 
 import Dropdown from '../dropdown/Dropdown';
-import CheckboxList, { RefsType } from '../checkbox-list/CheckboxList';
+import CheckboxList from '../checkbox-list/CheckboxList';
+import Switcher from '../../components/switcher/Switcher';
+
+export type RefsType = {
+  [key: number]: HTMLInputElement | null;
+};
 
 interface AddBookProps {
   titleRef: React.RefObject<HTMLInputElement>;
@@ -9,21 +14,30 @@ interface AddBookProps {
   priceRef: React.RefObject<HTMLInputElement>;
   dateRef: React.RefObject<HTMLInputElement>;
   dropdownRef: React.RefObject<HTMLSelectElement>;
-  handleSubmit: (e: React.FormEvent<HTMLFormElement>, checkboxes: RefsType) => void;
+  handleSubmit: (
+    e: React.FormEvent<HTMLFormElement>,
+    checkboxes: RefsType,
+    radios: RefsType
+  ) => void;
 }
 
 class AddBookForm extends Component<AddBookProps> {
   checkboxes: RefsType = {};
+  radios: RefsType = {};
 
   getCheckboxes(checkboxes: RefsType): void {
     this.checkboxes = { ...checkboxes };
+  }
+
+  getSwitcher(radios: RefsType): void {
+    this.radios = { ...radios };
   }
 
   render(): ReactNode {
     return (
       <div className="form">
         <form
-          onSubmit={(e) => this.props.handleSubmit(e, this.checkboxes)}
+          onSubmit={(e) => this.props.handleSubmit(e, this.checkboxes, this.radios)}
           className="form-container"
         >
           <div>
@@ -52,12 +66,7 @@ class AddBookForm extends Component<AddBookProps> {
           </div>
           <Dropdown innerRef={this.props.dropdownRef} />
           <CheckboxList onCheckboxClick={(refs) => this.getCheckboxes(refs)} />
-          {/* <div>
-            <label className="label" htmlFor="stock">
-              In stock:{' '}
-            </label>
-            <input className="checkbox" type="select" id="stock" />
-          </div> */}
+          <Switcher onSwitcherClick={(refs) => this.getSwitcher(refs)} />
           {/* <div>
             <label className="label" htmlFor="image">
               Image:{' '}

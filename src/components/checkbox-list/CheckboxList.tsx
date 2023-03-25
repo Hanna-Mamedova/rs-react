@@ -1,3 +1,4 @@
+import { RefsType } from 'components/add-book-form/AddBookForm';
 import { Component, ReactNode } from 'react';
 
 import './CheckboxList.css';
@@ -7,10 +8,6 @@ const CHECKLIST = ['Fairy Tale', 'Fiction', 'Folklore', 'Drama', 'Poetry'];
 interface CheckboxListProps {
   onCheckboxClick: (allRefs: RefsType) => void;
 }
-
-export type RefsType = {
-  [key: number]: HTMLInputElement | null;
-};
 
 class CheckboxList extends Component<CheckboxListProps> {
   allRefs: RefsType = {};

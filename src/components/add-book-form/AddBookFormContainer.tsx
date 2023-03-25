@@ -1,6 +1,5 @@
-import { RefsType } from 'components/checkbox-list/CheckboxList';
 import React, { Component, createRef } from 'react';
-import AddBookForm from './AddBookForm';
+import AddBookForm, { RefsType } from './AddBookForm';
 
 class AddBookFormContainer extends Component {
   titleRef = createRef<HTMLInputElement>();
@@ -9,7 +8,11 @@ class AddBookFormContainer extends Component {
   dateRef = createRef<HTMLInputElement>();
   dropdownRef = createRef<HTMLSelectElement>();
 
-  handleSubmit(event: React.FormEvent<HTMLFormElement>, checkboxes: RefsType): void {
+  handleSubmit(
+    event: React.FormEvent<HTMLFormElement>,
+    checkboxes: RefsType,
+    radios: RefsType
+  ): void {
     event.preventDefault();
     // console.log('title', this.titleRef.current?.value);
     // console.log('auth', this.authorRef.current?.value);
@@ -17,6 +20,10 @@ class AddBookFormContainer extends Component {
     // console.log('date', this.dateRef.current?.value);
     // console.log('dropdown', this.dropdownRef.current?.value);
     console.log('checkboxRef', checkboxes);
+    console.log(
+      'radios',
+      Object.values(radios).find((input) => input?.checked)
+    );
   }
 
   render(): JSX.Element {
@@ -27,7 +34,8 @@ class AddBookFormContainer extends Component {
         priceRef={this.priceRef}
         dateRef={this.dateRef}
         dropdownRef={this.dropdownRef}
-        handleSubmit={(e, checkboxes) => this.handleSubmit(e, checkboxes)}
+        // switcherRef={this.switcherRef}
+        handleSubmit={(e, checkboxes, radios) => this.handleSubmit(e, checkboxes, radios)}
       />
     );
   }
