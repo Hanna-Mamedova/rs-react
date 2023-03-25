@@ -15,13 +15,13 @@ class CheckboxList extends Component<CheckboxListProps> {
   render(): ReactNode {
     return (
       <div className="checkList">
-        <label htmlFor="genre" className="title">
+        <label htmlFor="genre" className="label">
           Genre:
         </label>
-        <div id="genre" className="list-container">
+        <div id="genre" className="list-container input">
           {CHECKLIST.map((item, index) => {
             return (
-              <div key={index}>
+              <div key={index} className="list">
                 <span>{item}</span>
                 <input
                   type="checkbox"

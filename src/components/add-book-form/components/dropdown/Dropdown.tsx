@@ -13,16 +13,17 @@ class Dropdown extends Component<DropdownProps> {
   render(): ReactNode {
     return (
       <div
-        className="dropdown"
+        className="dropdown text-input"
         onClick={() => this.setState({ isShowDropdown: !this.state.isShowDropdown })}
       >
-        {' '}
-        Language:
-        <select className="dropdown-list" ref={this.props.innerRef}>
-          <option>eng</option>
-          <option>de</option>
-          <option>pl</option>
-          <option>es</option>
+        <label className="label" htmlFor="dropdown-list">
+          Language:
+        </label>
+        <select id="dropdown-list" className="dropdown-list input" ref={this.props.innerRef}>
+          <option>English</option>
+          <option>German</option>
+          <option>Polish</option>
+          <option>Spanish</option>
         </select>
       </div>
     );

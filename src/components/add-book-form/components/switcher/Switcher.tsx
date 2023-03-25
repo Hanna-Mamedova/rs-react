@@ -13,8 +13,10 @@ class Switcher extends Component<SwitcherProps> {
   render(): ReactNode {
     return (
       <div className="onStock" onClick={() => this.props.onSwitcherClick(this.allRefs)}>
-        <label htmlFor="switcher">On Stock:</label>
-        <div className="switcher" id="switcher">
+        <label htmlFor="switcher" className="label">
+          On Stock:
+        </label>
+        <div className="switcher input" id="switcher">
           <label htmlFor="yes">
             Yes
             <input

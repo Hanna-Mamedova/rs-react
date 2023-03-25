@@ -15,13 +15,13 @@ class TextInput extends Component<InputProps> {
 
   render(): ReactNode {
     return (
-      <div>
+      <div className="text-input">
         <label className="label" htmlFor={this.props.name}>
           {this.getLabel()}:{' '}
         </label>
         <input
           ref={this.props.innerRef}
-          className="input"
+          className={`input ${this.props.type}`}
           type={this.props.type}
           id={this.props.name}
         />

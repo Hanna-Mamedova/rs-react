@@ -1,5 +1,7 @@
 import { Component, ReactNode } from 'react';
 
+import './AddBookForm.css';
+
 import Dropdown from './components/dropdown/Dropdown';
 import CheckboxList from './components/checkbox-list/CheckboxList';
 import Switcher from './components/switcher/Switcher';
@@ -50,7 +52,11 @@ class AddBookForm extends Component<AddBookProps> {
           <CheckboxList onCheckboxClick={(refs) => this.getCheckboxes(refs)} />
           <Switcher onSwitcherClick={(refs) => this.getSwitcher(refs)} />
           <TextInput name="image" type="file" innerRef={this.props.imageRef} />
-          <button type="submit">Add</button>
+          <div className="btn-submit__container">
+            <button className="btn-submit" type="submit">
+              Add
+            </button>
+          </div>
         </form>
       </div>
     );
