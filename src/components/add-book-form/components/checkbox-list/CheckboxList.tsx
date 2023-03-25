@@ -25,6 +25,7 @@ class CheckboxList extends Component<CheckboxListProps> {
                 <span>{item}</span>
                 <input
                   type="checkbox"
+                  value={item}
                   ref={(checkboxRef) => (this.allRefs[index] = checkboxRef)}
                   onClick={() => this.props.onCheckboxClick(this.allRefs)}
                 />

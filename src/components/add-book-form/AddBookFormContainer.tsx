@@ -1,3 +1,4 @@
+import { NewBook } from 'models/card.model';
 import React, { Component, createRef } from 'react';
 import AddBookForm, { RefsType } from './AddBookForm';
 
@@ -9,22 +10,36 @@ class AddBookFormContainer extends Component {
   dropdownRef = createRef<HTMLSelectElement>();
   imageRef = createRef<HTMLInputElement>();
 
+  newCard: NewBook | Record<string, never> = {};
+
+  getOnStock(radios: RefsType): boolean {
+    const checked = Object.values(radios).find((input) => input?.checked) as HTMLInputElement;
+    return checked.value === 'yes';
+  }
+
+  getGenre(checkboxes: RefsType): string[] {
+    const checked = Object.values(checkboxes).filter((input) => input?.checked);
+    const checkedValues = checked.map((input) => input?.value) as string[];
+    return checkedValues;
+  }
+
   handleSubmit(
     event: React.FormEvent<HTMLFormElement>,
     checkboxes: RefsType,
     radios: RefsType
   ): void {
     event.preventDefault();
-    // console.log('title', this.titleRef.current?.value);
-    // console.log('auth', this.authorRef.current?.value);
-    // console.log('price', this.priceRef.current?.value);
-    // console.log('date', this.dateRef.current?.value);
-    // console.log('dropdown', this.dropdownRef.current?.value);
-    console.log('checkboxRef', checkboxes);
-    console.log(
-      'radios',
-      Object.values(radios).find((input) => input?.checked)
-    );
+    this.newCard = {
+      title: this.titleRef.current!.value,
+      author: this.authorRef.current!.value,
+      price: +this.priceRef.current!.value,
+      date: this.dateRef.current!.value,
+      language: this.dropdownRef.current!.value,
+      genre: this.getGenre(checkboxes),
+      onStock: this.getOnStock(radios),
+      cover_url: this.imageRef.current!.value,
+    };
+    console.log('this.newCard', this.newCard);
   }
 
   render(): JSX.Element {
