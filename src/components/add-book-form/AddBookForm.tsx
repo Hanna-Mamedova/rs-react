@@ -1,8 +1,8 @@
 import { Component, ReactNode } from 'react';
 
-import Dropdown from '../dropdown/Dropdown';
-import CheckboxList from '../checkbox-list/CheckboxList';
-import Switcher from '../../components/switcher/Switcher';
+import Dropdown from './components/dropdown/Dropdown';
+import CheckboxList from './components/checkbox-list/CheckboxList';
+import Switcher from './components/switcher/Switcher';
 
 export type RefsType = {
   [key: number]: HTMLInputElement | null;
