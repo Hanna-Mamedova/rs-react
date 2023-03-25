@@ -7,6 +7,7 @@ class AddBookFormContainer extends Component {
   priceRef = createRef<HTMLInputElement>();
   dateRef = createRef<HTMLInputElement>();
   dropdownRef = createRef<HTMLSelectElement>();
+  imageRef = createRef<HTMLInputElement>();
 
   handleSubmit(
     event: React.FormEvent<HTMLFormElement>,
@@ -34,7 +35,7 @@ class AddBookFormContainer extends Component {
         priceRef={this.priceRef}
         dateRef={this.dateRef}
         dropdownRef={this.dropdownRef}
-        // switcherRef={this.switcherRef}
+        imageRef={this.imageRef}
         handleSubmit={(e, checkboxes, radios) => this.handleSubmit(e, checkboxes, radios)}
       />
     );

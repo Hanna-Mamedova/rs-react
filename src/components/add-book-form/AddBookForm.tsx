@@ -3,6 +3,7 @@ import { Component, ReactNode } from 'react';
 import Dropdown from './components/dropdown/Dropdown';
 import CheckboxList from './components/checkbox-list/CheckboxList';
 import Switcher from './components/switcher/Switcher';
+import TextInput from './components/text-input/TextInput';
 
 export type RefsType = {
   [key: number]: HTMLInputElement | null;
@@ -14,6 +15,7 @@ interface AddBookProps {
   priceRef: React.RefObject<HTMLInputElement>;
   dateRef: React.RefObject<HTMLInputElement>;
   dropdownRef: React.RefObject<HTMLSelectElement>;
+  imageRef: React.RefObject<HTMLInputElement>;
   handleSubmit: (
     e: React.FormEvent<HTMLFormElement>,
     checkboxes: RefsType,
@@ -40,39 +42,14 @@ class AddBookForm extends Component<AddBookProps> {
           onSubmit={(e) => this.props.handleSubmit(e, this.checkboxes, this.radios)}
           className="form-container"
         >
-          <div>
-            <label className="label" htmlFor="title">
-              Title:{' '}
-            </label>
-            <input ref={this.props.titleRef} className="input" type="text" id="title" />
-          </div>
-          <div>
-            <label className="label" htmlFor="author">
-              Author:{' '}
-            </label>
-            <input ref={this.props.authorRef} className="input" type="text" id="author" />
-          </div>
-          <div>
-            <label className="label" htmlFor="price">
-              Price:{' '}
-            </label>
-            <input ref={this.props.priceRef} className="input" type="number" id="price" />
-          </div>
-          <div>
-            <label className="label" htmlFor="created-date">
-              Created date:{' '}
-            </label>
-            <input ref={this.props.dateRef} className="input" type="date" id="created-date" />
-          </div>
+          <TextInput name="title" type="text" innerRef={this.props.titleRef} />
+          <TextInput name="author" type="text" innerRef={this.props.authorRef} />
+          <TextInput name="price" type="number" innerRef={this.props.priceRef} />
+          <TextInput name="date" type="date" innerRef={this.props.dateRef} />
           <Dropdown innerRef={this.props.dropdownRef} />
           <CheckboxList onCheckboxClick={(refs) => this.getCheckboxes(refs)} />
           <Switcher onSwitcherClick={(refs) => this.getSwitcher(refs)} />
-          {/* <div>
-            <label className="label" htmlFor="image">
-              Image:{' '}
-            </label>
-            <input className="file" type="select" id="image" />
-          </div> */}
+          <TextInput name="image" type="file" innerRef={this.props.imageRef} />
           <button type="submit">Add</button>
         </form>
       </div>
