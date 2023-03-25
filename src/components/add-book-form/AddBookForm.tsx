@@ -9,7 +9,6 @@ interface AddBookProps {
   priceRef: React.RefObject<HTMLInputElement>;
   dateRef: React.RefObject<HTMLInputElement>;
   dropdownRef: React.RefObject<HTMLSelectElement>;
-  // checkboxRef: React.RefObject<HTMLFieldSetElement>;
   handleSubmit: (e: React.FormEvent<HTMLFormElement>, checkboxes: RefsType) => void;
 }
 
@@ -51,20 +50,8 @@ class AddBookForm extends Component<AddBookProps> {
             </label>
             <input ref={this.props.dateRef} className="input" type="date" id="created-date" />
           </div>
-          <div>
-            <label className="label" htmlFor="genre">
-              Genre:{' '}
-            </label>
-            <input className="input" type="select" id="genre" />
-          </div>
           <Dropdown innerRef={this.props.dropdownRef} />
           <CheckboxList onCheckboxClick={(refs) => this.getCheckboxes(refs)} />
-          {/* <div>
-            <label className="label" htmlFor="language">
-              Language:{' '}
-            </label>
-            <input className="input" type="select" id="language" />
-          </div> */}
           {/* <div>
             <label className="label" htmlFor="stock">
               In stock:{' '}

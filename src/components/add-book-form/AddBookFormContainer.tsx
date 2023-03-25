@@ -8,7 +8,6 @@ class AddBookFormContainer extends Component {
   priceRef = createRef<HTMLInputElement>();
   dateRef = createRef<HTMLInputElement>();
   dropdownRef = createRef<HTMLSelectElement>();
-  // checkboxRef = createRef<HTMLFieldSetElement>();
 
   handleSubmit(event: React.FormEvent<HTMLFormElement>, checkboxes: RefsType): void {
     event.preventDefault();
