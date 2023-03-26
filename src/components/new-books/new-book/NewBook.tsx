@@ -13,7 +13,7 @@ class Book extends Component<BookProps> {
     return (
       <div className="book-card">
         <div className="book">
-          <img className="book__image" src={this.props.book.cover_url} alt="" />
+          <img className="book__image" src={this.props.book.image} alt="" />
           <h3 className="book__title">{this.props.book.title}</h3>
           <div>
             <p className="book__author">
@@ -26,18 +26,18 @@ class Book extends Component<BookProps> {
             </p>
             <p className="book__lang">
               <span className="book__label">Lang: </span>
-              {this.props.book.language}
+              {this.props.book.lang}
             </p>
             <p className="book__stock">
               <span className="book__label">On Stock: </span>
-              {this.props.book.onStock ? 'yes' : 'no'}
+              {this.props.book.onStock}
             </p>
             <p className="book__genre">
               <span className="book__label">Genre: </span>
-              {`${this.props.book.genre.join(', ')}`}
+              {this.props.book.genre}
             </p>
             <p className="book__price">
-              {this.props.book.price.toLocaleString('en-US', {
+              {(+this.props.book.price).toLocaleString('en-US', {
                 style: 'currency',
                 currency: 'USD',
               })}

@@ -12,10 +12,10 @@ export interface Book {
 export interface NewBook {
   title: string;
   author: string;
-  price: number;
+  price: string;
   date: string;
-  language: string;
-  genre: string[];
-  onStock: boolean;
-  cover_url: string;
+  lang: string;
+  genre: string;
+  onStock: string;
+  image: string;
 }
