@@ -1,6 +1,5 @@
 import { NewBook } from 'models/card.model';
 import { Component, ReactNode } from 'react';
-import { NavLink } from 'react-router-dom';
 
 import './NewBook.css';
 
