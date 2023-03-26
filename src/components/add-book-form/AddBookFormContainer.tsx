@@ -66,6 +66,7 @@ class AddBookFormContainer extends Component<AddFormProps> {
   ): void {
     event.preventDefault();
     this.newCard = this.getNewBook(checkboxes, radios);
+    window.alert('The book has been added');
     this.props.onFormSubmit(this.newCard);
     this.clearForm(checkboxes, radios);
   }
