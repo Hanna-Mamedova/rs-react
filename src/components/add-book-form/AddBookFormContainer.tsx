@@ -2,7 +2,11 @@ import { NewBook } from 'models/card.model';
 import React, { Component, createRef } from 'react';
 import AddBookForm, { RefsType } from './AddBookForm';
 
-class AddBookFormContainer extends Component {
+type AddFormProps = {
+  onFormSubmit: (book: NewBook) => void;
+};
+
+class AddBookFormContainer extends Component<AddFormProps> {
   titleRef = createRef<HTMLInputElement>();
   authorRef = createRef<HTMLInputElement>();
   priceRef = createRef<HTMLInputElement>();
@@ -39,7 +43,7 @@ class AddBookFormContainer extends Component {
       onStock: this.getOnStock(radios),
       cover_url: this.imageRef.current!.value,
     };
-    console.log('this.newCard', this.newCard);
+    this.props.onFormSubmit(this.newCard);
   }
 
   render(): JSX.Element {
