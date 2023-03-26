@@ -5,7 +5,6 @@
 
   .book {
     position: relative;
-    height: 458px;
     font-family: "Dosis", sans-serif;
   }
 
@@ -26,7 +25,11 @@
     margin: 5px 0;
   }
 
-  .book__author {
+  .book__author,
+  .book__date,
+  .book__stock,
+  .book__genre,
+  .book__lang {
     font-family: "Dosis", sans-serif;
     font-size: 16px;
     color: #636376;
@@ -35,13 +38,11 @@
   }
 
   .book__price {
-    position: absolute;
-    bottom: 0;
-    right: 0;
     font-size: 24px;
     color: #020523;
     margin-top: 0;
     margin-bottom: 9px;
+    text-align: end;
   }
 
   .book__button {
