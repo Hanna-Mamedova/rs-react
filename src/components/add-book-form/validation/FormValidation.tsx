@@ -1,23 +1,19 @@
 import { NewBook } from 'models/card.model';
 import { Inputs, InputsReqs } from './ValidationTypes';
 
-class FormValidation {
-  validReqs: InputsReqs = {
-    title: { required: true, min: 3, max: 25, errMsg: '' },
-    author: { required: true, errMsg: '' },
-    price: { required: true, errMsg: '' },
-    date: { required: true, errMsg: '', errFutureDate: '' },
-    lang: { required: true, errMsg: '' },
-    genre: { required: true, errMsg: '' },
-    onStock: { required: true, errMsg: '' },
-    image: { required: true, errMsg: '' },
-    error: false,
-  };
+export class FormValidation {
+  validReqs: InputsReqs;
+
+  constructor(validReqs: InputsReqs) {
+    this.validReqs = validReqs;
+  }
 
   checkRequired(inputName: string, inputData: string): void {
     if (this.validReqs[inputName as keyof Inputs].required && inputData === '') {
       this.validReqs.error = true;
-      this.validReqs[inputName as keyof Inputs].errMsg = 'The field is required';
+      this.validReqs[inputName as keyof Inputs].errMsg = `The ${inputName} is required`;
+    } else {
+      this.validReqs[inputName as keyof Inputs].errMsg = '';
     }
   }
 
@@ -32,17 +28,25 @@ class FormValidation {
 
   validateDate(date: string): void {
     if (new Date() < new Date(date)) {
-      this.validReqs.date.errFutureDate = `Date cannot be in the future.`;
+      this.validReqs.date.errMsg = `Date cannot be in the future.`;
       this.validReqs.error = true;
     } else {
-      this.validReqs.date.errFutureDate = '';
+      this.validReqs.date.errMsg = '';
     }
+  }
+
+  checkIfValid(): void {
+    const inputsReqs = Object.values(this.validReqs);
+    inputsReqs.pop();
+    const valid = inputsReqs.every((item) => item.errMsg === '');
+    this.validReqs.error = !valid;
   }
 
   validateForm(formData: NewBook) {
     Object.entries(formData).map((input) => this.checkRequired(input[0], input[1]));
     this.validateTitle(formData.title);
     this.validateDate(formData.date);
+    this.checkIfValid();
     return this.validReqs;
   }
 }
