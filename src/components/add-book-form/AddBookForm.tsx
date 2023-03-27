@@ -7,6 +7,7 @@ import CheckboxList from './components/checkbox-list/CheckboxList';
 import Switcher from './components/switcher/Switcher';
 import TextInput from './components/text-input/TextInput';
 import { InputsReqs } from './validation/ValidationTypes';
+// import ErrorMessage from './validation/ErrorMessage/ErrorMessage';
 
 export type RefsType = {
   [key: number]: HTMLInputElement | null;
@@ -19,7 +20,7 @@ interface AddBookProps {
   dateRef: React.RefObject<HTMLInputElement>;
   dropdownRef: React.RefObject<HTMLSelectElement>;
   imageRef: React.RefObject<HTMLInputElement>;
-  validReqs: InputsReqs;
+  validReqs: InputsReqs | Record<string, never>;
   handleSubmit: (
     e: React.FormEvent<HTMLFormElement>,
     checkboxes: RefsType,
@@ -30,6 +31,7 @@ interface AddBookProps {
 class AddBookForm extends Component<AddBookProps> {
   checkboxes: RefsType = {};
   radios: RefsType = {};
+  showError = false;
 
   getCheckboxes(checkboxes: RefsType): void {
     this.checkboxes = { ...checkboxes };
@@ -39,17 +41,25 @@ class AddBookForm extends Component<AddBookProps> {
     this.radios = { ...radios };
   }
 
+  // NEED TO GET VALIDREQES HERE!!!
+  handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
+    this.props.handleSubmit(e, this.checkboxes, this.radios);
+    console.log('this.props.validReqs child', this.props.validReqs);
+
+    if (this.props.validReqs.error) {
+      this.showError = true;
+    }
+  }
+
   render(): ReactNode {
     return (
       <div className="form">
-        <form
-          onSubmit={(e) => this.props.handleSubmit(e, this.checkboxes, this.radios)}
-          className="form-container"
-        >
+        <form onSubmit={(e) => this.handleSubmit(e)} className="form-container">
           <TextInput name="title" type="text" innerRef={this.props.titleRef} />
-          <span style={{ display: 'none' }} className="error">
-            {this.props.validReqs.title.errMsg}
-          </span>
+          {/* <ErrorMessage
+            showError={this.showError}
+            message={this.props.validReqs.error ? this.props.validReqs.title.errMsg : ''}
+          /> */}
           <TextInput name="author" type="text" innerRef={this.props.authorRef} />
           <span></span>
           <TextInput name="price" type="number" innerRef={this.props.priceRef} />

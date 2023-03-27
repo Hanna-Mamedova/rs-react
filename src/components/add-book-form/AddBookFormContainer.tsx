@@ -8,6 +8,10 @@ type AddFormProps = {
   onFormSubmit: (book: NewBook) => void;
 };
 
+interface AddFormState {
+  validReqs: InputsReqs | Record<string, never>;
+}
+
 class AddBookFormContainer extends Component<AddFormProps> {
   titleRef = createRef<HTMLInputElement>();
   authorRef = createRef<HTMLInputElement>();
@@ -17,7 +21,10 @@ class AddBookFormContainer extends Component<AddFormProps> {
   imageRef = createRef<HTMLInputElement>();
 
   newCard: NewBook | Record<string, never> = {};
-  validReqs: InputsReqs | Record<string, never> = {};
+
+  state: AddFormState = {
+    validReqs: {},
+  };
 
   getOnStock(radios: RefsType): string | undefined {
     if (Object.keys(radios).length !== 0) {
@@ -36,8 +43,10 @@ class AddBookFormContainer extends Component<AddFormProps> {
 
   validateForm(formData: NewBook): void {
     const formValidation = new FormValidation();
-    this.validReqs = formValidation.validateForm(formData);
-    console.log('this.validReqs', this.validReqs);
+    console.log(formValidation.validateForm(formData));
+    this.setState({
+      validReqs: formValidation.validateForm(formData),
+    });
   }
 
   getNewBook(checkboxes: RefsType, radios: RefsType): NewBook {
@@ -80,7 +89,8 @@ class AddBookFormContainer extends Component<AddFormProps> {
     event.preventDefault();
     this.newCard = this.getNewBook(checkboxes, radios);
     this.validateForm(this.newCard);
-    if (!this.validReqs.error) {
+
+    if (!this.state.validReqs.error) {
       this.props.onFormSubmit(this.newCard);
       this.clearForm(checkboxes, radios);
     }
@@ -96,7 +106,7 @@ class AddBookFormContainer extends Component<AddFormProps> {
           dateRef={this.dateRef}
           dropdownRef={this.dropdownRef}
           imageRef={this.imageRef}
-          validReqs={this.validReqs}
+          validReqs={this.state.validReqs}
           handleSubmit={(e, checkboxes, radios) => this.handleSubmit(e, checkboxes, radios)}
         />
       </div>
