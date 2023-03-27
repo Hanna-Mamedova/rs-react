@@ -1,8 +1,8 @@
 import { Component, ReactNode } from 'react';
 import { NavLink } from 'react-router-dom';
 
-import astronaut from '../../assets/astronaut.svg';
-import planet from '../../assets/planet.svg';
+import astronaut from '/assets/astronaut.svg';
+import planet from '/assets/planet.svg';
 
 import './Not-found.css';
 

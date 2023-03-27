@@ -1,7 +1,7 @@
 import { Component, ReactNode } from 'react';
 
 import './Notification.css';
-import checkIcon from '../../assets/check.svg';
+import checkIcon from '/assets/check.svg';
 
 type NotificationProps = {
   toast: {
