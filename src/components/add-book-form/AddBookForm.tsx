@@ -7,7 +7,7 @@ import CheckboxList from './components/checkbox-list/CheckboxList';
 import Switcher from './components/switcher/Switcher';
 import TextInput from './components/text-input/TextInput';
 import { InputsReqs } from './validation/ValidationTypes';
-// import ErrorMessage from './validation/ErrorMessage/ErrorMessage';
+import ErrorMessage from './validation/ErrorMessage/ErrorMessage';
 
 export type RefsType = {
   [key: number]: HTMLInputElement | null;
@@ -41,10 +41,8 @@ class AddBookForm extends Component<AddBookProps> {
     this.radios = { ...radios };
   }
 
-  // NEED TO GET VALIDREQES HERE!!!
   handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
     this.props.handleSubmit(e, this.checkboxes, this.radios);
-    console.log('this.props.validReqs child', this.props.validReqs);
 
     if (this.props.validReqs.error) {
       this.showError = true;
@@ -56,24 +54,28 @@ class AddBookForm extends Component<AddBookProps> {
       <div className="form">
         <form onSubmit={(e) => this.handleSubmit(e)} className="form-container">
           <TextInput name="title" type="text" innerRef={this.props.titleRef} />
-          {/* <ErrorMessage
-            showError={this.showError}
-            message={this.props.validReqs.error ? this.props.validReqs.title.errMsg : ''}
-          /> */}
+          <ErrorMessage showError={this.showError} message={this.props.validReqs.title.errMsg} />
+
           <TextInput name="author" type="text" innerRef={this.props.authorRef} />
-          <span></span>
+          <ErrorMessage showError={this.showError} message={this.props.validReqs.author.errMsg} />
+
           <TextInput name="price" type="number" innerRef={this.props.priceRef} />
-          <span></span>
+          <ErrorMessage showError={this.showError} message={this.props.validReqs.price.errMsg} />
+
           <TextInput name="date" type="date" innerRef={this.props.dateRef} />
-          <span></span>
+          <ErrorMessage showError={this.showError} message={this.props.validReqs.date.errMsg} />
+
           <Dropdown innerRef={this.props.dropdownRef} />
-          <span></span>
+          <ErrorMessage showError={this.showError} message={this.props.validReqs.lang.errMsg} />
+
           <CheckboxList onCheckboxClick={(refs) => this.getCheckboxes(refs)} />
-          <span></span>
+          <ErrorMessage showError={this.showError} message={this.props.validReqs.genre.errMsg} />
+
           <Switcher onSwitcherClick={(refs) => this.getSwitcher(refs)} />
-          <span></span>
+          <ErrorMessage showError={this.showError} message={this.props.validReqs.onStock.errMsg} />
+
           <TextInput name="image" type="file" innerRef={this.props.imageRef} />
-          <span></span>
+          <ErrorMessage showError={this.showError} message={this.props.validReqs.image.errMsg} />
           <div className="btn-submit__container">
             <button className="btn-submit" type="submit">
               Add
