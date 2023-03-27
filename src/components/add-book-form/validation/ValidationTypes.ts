@@ -16,7 +16,6 @@ export interface Inputs {
   date: {
     required: boolean;
     errMsg: string;
-    errFutureDate: string;
   };
   lang: {
     required: boolean;

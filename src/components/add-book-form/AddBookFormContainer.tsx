@@ -1,7 +1,7 @@
 import { NewBook } from 'models/card.model';
 import React, { Component, createRef } from 'react';
 import AddBookForm, { RefsType } from './AddBookForm';
-import FormValidation from './validation/FormValidation';
+import { FormValidation } from './validation/FormValidation';
 import { InputsReqs } from './validation/ValidationTypes';
 
 type AddFormProps = {
@@ -9,7 +9,7 @@ type AddFormProps = {
 };
 
 interface AddFormState {
-  validReqs: InputsReqs | Record<string, never>;
+  validReqs: InputsReqs;
 }
 
 class AddBookFormContainer extends Component<AddFormProps> {
@@ -23,27 +23,42 @@ class AddBookFormContainer extends Component<AddFormProps> {
   newCard: NewBook | Record<string, never> = {};
 
   state: AddFormState = {
-    validReqs: {},
+    validReqs: {
+      title: { required: true, min: 3, max: 25, errMsg: '' },
+      author: { required: true, errMsg: '' },
+      price: { required: true, errMsg: '' },
+      date: { required: true, errMsg: '' },
+      lang: { required: true, errMsg: '' },
+      genre: { required: true, errMsg: '' },
+      onStock: { required: true, errMsg: '' },
+      image: { required: false, errMsg: '' },
+      error: true,
+    },
   };
 
-  getOnStock(radios: RefsType): string | undefined {
+  getOnStock(radios: RefsType): string {
     if (Object.keys(radios).length !== 0) {
       const checked = Object.values(radios).find((input) => input?.checked) as HTMLInputElement;
-      return checked.value;
+      if (checked) {
+        return checked.value;
+      }
     }
+    return '';
   }
 
-  getGenre(checkboxes: RefsType): string | undefined {
+  getGenre(checkboxes: RefsType): string {
     if (Object.keys(checkboxes).length !== 0) {
       const checked = Object.values(checkboxes).filter((input) => input?.checked);
       const checkedValues = checked.map((input) => input?.value) as string[];
-      return checkedValues.join(', ');
+      if (checked) {
+        return checkedValues.join(', ');
+      }
     }
+    return '';
   }
 
   validateForm(formData: NewBook): void {
-    const formValidation = new FormValidation();
-    console.log(formValidation.validateForm(formData));
+    const formValidation = new FormValidation(this.state.validReqs);
     this.setState({
       validReqs: formValidation.validateForm(formData),
     });
@@ -89,7 +104,6 @@ class AddBookFormContainer extends Component<AddFormProps> {
     event.preventDefault();
     this.newCard = this.getNewBook(checkboxes, radios);
     this.validateForm(this.newCard);
-
     if (!this.state.validReqs.error) {
       this.props.onFormSubmit(this.newCard);
       this.clearForm(checkboxes, radios);
