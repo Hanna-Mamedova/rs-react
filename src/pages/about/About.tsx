@@ -1,12 +1,12 @@
 import { Component, ReactNode } from 'react';
 
-import './about.css';
+import './About.css';
 
 class About extends Component {
   render(): ReactNode {
     return (
       <div className="about">
-        <h3>About</h3>
+        <h1>About</h1>
         <div className="about-content">
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque magnam, quia eius sunt

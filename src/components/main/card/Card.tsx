@@ -2,7 +2,7 @@ import { Book } from 'models/card.model';
 import { Component, ReactNode } from 'react';
 import { NavLink } from 'react-router-dom';
 
-import './card.css';
+import './Card.css';
 
 type CardProps = {
   key: number;
@@ -12,14 +12,6 @@ type CardProps = {
 type MyState = { book: Book };
 
 class Card extends Component<CardProps, MyState> {
-  constructor(props: CardProps) {
-    super(props);
-
-    this.state = {
-      book: this.props.book,
-    };
-  }
-
   render(): ReactNode {
     return (
       <div className="book-card">

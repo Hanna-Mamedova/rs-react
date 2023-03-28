@@ -1,26 +1,20 @@
 import { Book } from 'models/card.model';
 import { Component, ReactNode } from 'react';
 import Card from '../card/Card';
-import { books } from './cards-data';
 
-import './cards.css';
+import './Cards.css';
 
-type CardsProps = Record<string, never>;
 type CardsState = {
   books: Book[];
 };
 
-class Cards extends Component<CardsProps, CardsState> {
-  constructor(props: CardsProps) {
-    super(props);
-
-    this.state = {
-      books: books,
-    };
-  }
+class Cards extends Component<{ books: Book[] }, CardsState> {
+  state = {
+    books: this.props.books,
+  };
 
   render(): ReactNode {
-    const cards = this.state.books.map((book) => <Card key={book.id} book={book} />);
+    const cards = this.state.books.map((book: Book) => <Card key={book.id} book={book} />);
 
     return <div className="cards">{cards}</div>;
   }

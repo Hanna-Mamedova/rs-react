@@ -1,0 +1,14 @@
+.text-input {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.date {
+    width: 30%;
+}
+
+.file {
+    background-color: transparent;
+    padding: 0px;
+}

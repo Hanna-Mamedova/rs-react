@@ -1,6 +1,6 @@
 import { Component, ReactNode } from 'react';
 import { NavLink } from 'react-router-dom';
-import './header.css';
+import './Header.css';
 
 class Header extends Component {
   render(): ReactNode {
@@ -13,6 +13,9 @@ class Header extends Component {
             </li>
             <li>
               <NavLink to="/main">Main</NavLink>
+            </li>
+            <li>
+              <NavLink to="/forms">Forms</NavLink>
             </li>
           </ul>
         </nav>

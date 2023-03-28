@@ -1,0 +1,41 @@
+import { RefsType } from 'components/add-book-form/AddBookForm';
+import { Component, ReactNode } from 'react';
+
+import './CheckboxList.css';
+
+const CHECKLIST = ['Fairy Tale', 'Fiction', 'Folklore', 'Drama', 'Poetry'];
+
+interface CheckboxListProps {
+  onCheckboxClick: (allRefs: RefsType) => void;
+}
+
+class CheckboxList extends Component<CheckboxListProps> {
+  allRefs: RefsType = {};
+
+  render(): ReactNode {
+    return (
+      <div className="checkList">
+        <label htmlFor="genre" className="label">
+          Genre:
+        </label>
+        <div id="genre" className="list-container input">
+          {CHECKLIST.map((item, index) => {
+            return (
+              <div key={index} className="list">
+                <span>{item}</span>
+                <input
+                  type="checkbox"
+                  value={item}
+                  ref={(checkboxRef) => (this.allRefs[index] = checkboxRef)}
+                  onClick={() => this.props.onCheckboxClick(this.allRefs)}
+                />
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    );
+  }
+}
+
+export default CheckboxList;

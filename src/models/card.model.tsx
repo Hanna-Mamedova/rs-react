@@ -8,3 +8,14 @@ export interface Book {
   language: string;
   created_date: string;
 }
+
+export interface NewBook {
+  title: string;
+  author: string;
+  price: string;
+  date: string;
+  lang: string;
+  genre: string;
+  onStock: string;
+  image: string;
+}
