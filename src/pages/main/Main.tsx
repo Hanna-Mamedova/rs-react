@@ -1,7 +1,7 @@
 import Cards from '../../components/main/cards/Cards';
 import SearchBar from '../../components/main/search-bar/SearchBar';
 
-import { books } from '../../components/main/cards/cards-data';
+import { books } from '../../data/cards-data';
 
 function Main() {
   return (
