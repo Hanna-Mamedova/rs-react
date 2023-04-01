@@ -21,12 +21,46 @@
     line-height: 1.68rem;
 }
 
+.text-input {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
 .input {
     background-color: rgba(150,75,0,.06);
     border: transparent;
     border-radius: 4px;
     color: #acacac;
     padding: 12px 12px 12px 21px;
+}
+
+.dropdown-list {
+    cursor: pointer;
+}
+
+.list-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.list {
+    display: flex;
+    align-items: center;
+}
+
+.list input {
+    cursor: pointer;
+}
+
+.date {
+    width: 30%;
+}
+
+.file {
+    background-color: transparent;
+    padding: 0px;
 }
 
 .btn-submit__container {
@@ -52,4 +86,9 @@
 .btn-submit:hover {
     background: #AAAAAA;
     color: white;
+}
+
+.errorMsg {
+    font-size: 13px;
+    color: red;
 }
