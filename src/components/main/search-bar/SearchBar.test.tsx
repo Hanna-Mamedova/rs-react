@@ -1,6 +1,6 @@
 import SearchBar from './SearchBar';
 import { it, describe } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 describe('SearchBar component', () => {
   it('renders the component', () => {
