@@ -9,7 +9,7 @@ type CardProps = {
 
 function Card(props: CardProps) {
   return (
-    <div className="book-card">
+    <div className="book-card" data-testid="card">
       <div className="book">
         <img className="book__image" src={props.book.cover_url} alt="Book Cover" />
         <h3 className="book__title">{props.book.title}</h3>
