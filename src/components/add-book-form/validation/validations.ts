@@ -3,16 +3,16 @@ export enum InputLength {
   max = 30,
 }
 
-export const isAfter = (date: Date) => {
+export const isAfter = (date: string) => {
   if (!date) {
     return false;
   }
   return new Date(date) < new Date();
 };
 
-export const isPositive = (price: number) => {
+export const isPositive = (price: string) => {
   if (!price) {
     return false;
   }
-  return price > 0;
+  return +price > 0;
 };
