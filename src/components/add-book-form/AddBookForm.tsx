@@ -1,3 +1,4 @@
+import { NewBook } from 'models/card.model';
 import { useForm } from 'react-hook-form';
 
 import './AddBookForm.css';
@@ -5,15 +6,21 @@ import { InputLength, isAfter, isPositive } from './validation/validations';
 
 const CHECKLIST = ['Fairy Tale', 'Fiction', 'Folklore', 'Drama', 'Poetry'];
 
-function AddBookForm() {
+type AddBookFormProps = {
+  onFormSubmit: (book: NewBook) => void;
+};
+
+function AddBookForm(props: AddBookFormProps) {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
+    props.onFormSubmit(data);
+    reset();
   };
 
   return (
@@ -91,7 +98,7 @@ function AddBookForm() {
           <label className="label" htmlFor="dropdown-list">
             Language:
           </label>
-          <select id="dropdown-list" className="dropdown-list input" {...register('language')}>
+          <select id="dropdown-list" className="dropdown-list input" {...register('lang')}>
             <option>English</option>
             <option>German</option>
             <option>Polish</option>
@@ -107,12 +114,12 @@ function AddBookForm() {
               return (
                 <div key={index} className="list">
                   <span>{item}</span>
-                  <input type="checkbox" value={item} {...register('item', { required: true })} />
+                  <input type="checkbox" value={item} {...register('genre', { required: true })} />
                 </div>
               );
             })}
           </div>
-          {errors.item && errors.item.type === 'required' && (
+          {errors.genre && errors.genre.type === 'required' && (
             <span className="errorMsg">Genre is required.</span>
           )}
         </div>
@@ -123,14 +130,19 @@ function AddBookForm() {
           <div className="switcher input" id="switcher">
             <label htmlFor="yes">
               Yes
-              <input type="radio" id="yes" value="yes" {...register('stock', { required: true })} />
+              <input
+                type="radio"
+                id="yes"
+                value="yes"
+                {...register('onStock', { required: true })}
+              />
             </label>
             <label htmlFor="no">
               No
-              <input type="radio" id="no" value="no" {...register('stock', { required: true })} />
+              <input type="radio" id="no" value="no" {...register('onStock', { required: true })} />
             </label>
           </div>
-          {errors.stock && errors.stock.type === 'required' && (
+          {errors.onStock && errors.onStock.type === 'required' && (
             <p className="errorMsg">Stock is required.</p>
           )}
         </div>

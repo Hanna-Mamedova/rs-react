@@ -47,8 +47,7 @@ class Forms extends Component {
     return (
       <div className="forms">
         <h1>Add book</h1>
-        <AddBookForm />
-        {/* onFormSubmit={(book: NewBook) => this.hanleSubmit(book)} */}
+        <AddBookForm onFormSubmit={(book: NewBook) => this.hanleSubmit(book)} />
         <NewBooksContainer newBooks={this.state.newBooks} />
         <Notification
           onClose={() => this.hideNotification()}
