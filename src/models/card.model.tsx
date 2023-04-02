@@ -15,7 +15,7 @@ export interface NewBook {
   price: string;
   date: string;
   lang: string;
-  genre: string;
+  genre: string[];
   onStock: string;
   image: string;
 }

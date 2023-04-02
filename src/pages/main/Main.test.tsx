@@ -2,8 +2,8 @@ import Main from './Main';
 import { it, describe } from 'vitest';
 import { render, screen } from '@testing-library/react';
 
-describe('Main.tsx', () => {
-  it('Check if the App render very well', () => {
+describe('Main component', () => {
+  it('Check if the Main renders', () => {
     render(<Main />);
     screen.debug();
   });

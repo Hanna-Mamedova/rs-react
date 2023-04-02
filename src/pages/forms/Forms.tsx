@@ -1,63 +1,48 @@
 import { successData } from '../../components/notifications/notification-messages';
 import { NewBook } from 'models/card.model';
-import React, { Component } from 'react';
+import { useState } from 'react';
 
-import AddBookFormContainer from '../../components/add-book-form/AddBookFormContainer';
 import NewBooksContainer from '../../components/new-books/NewBooksContainer';
 import Notification from '../../components/notifications/Notification';
+import AddBookForm from '../../components/add-book-form/AddBookForm';
 
 import './Forms.css';
 
-interface FormsState {
-  newBooks: NewBook[];
-  notificationVisible: boolean;
-}
+function Forms() {
+  const [newBooks, setNewBooks] = useState<NewBook[]>([]);
+  const [notificationVisible, setNotificationVisible] = useState(false);
 
-class Forms extends Component {
-  state: FormsState = {
-    newBooks: [],
-    notificationVisible: false,
+  const addBook = (book: NewBook): void => {
+    setNewBooks([...newBooks, book]);
   };
 
-  addBook(book: NewBook): void {
-    this.setState({
-      newBooks: [...this.state.newBooks, book],
-    });
-  }
+  const showNotification = (): void => {
+    setNotificationVisible(true);
+  };
 
-  showNotification(): void {
-    this.setState({
-      notificationVisible: true,
-    });
-  }
+  const hideNotification = (): void => {
+    setNotificationVisible(false);
+  };
 
-  hideNotification(): void {
-    this.setState({
-      notificationVisible: false,
-    });
-  }
+  const hanleSubmit = (book: NewBook): void => {
+    addBook(book);
+    showNotification();
+    setTimeout(() => hideNotification(), 2000);
+  };
 
-  hanleSubmit(book: NewBook): void {
-    this.addBook(book);
-    this.showNotification();
-    setTimeout(() => this.hideNotification(), 2000);
-  }
-
-  render(): React.ReactNode {
-    return (
-      <div className="forms">
-        <h1>Add book</h1>
-        <AddBookFormContainer onFormSubmit={(book: NewBook) => this.hanleSubmit(book)} />
-        <NewBooksContainer newBooks={this.state.newBooks} />
-        <Notification
-          onClose={() => this.hideNotification()}
-          notificationVisible={this.state.notificationVisible}
-          toast={successData}
-        />
-        ;
-      </div>
-    );
-  }
+  return (
+    <div className="forms">
+      <h1>Add book</h1>
+      <AddBookForm onFormSubmit={(book: NewBook) => hanleSubmit(book)} />
+      <NewBooksContainer newBooks={newBooks} />
+      <Notification
+        onClose={() => hideNotification()}
+        notificationVisible={notificationVisible}
+        toast={successData}
+      />
+      ;
+    </div>
+  );
 }
 
 export default Forms;

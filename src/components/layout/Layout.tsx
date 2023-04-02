@@ -1,17 +1,14 @@
-import { Component, ReactNode } from 'react';
 import { Outlet } from 'react-router-dom';
 
 import Header from '../header/Header';
 
-class Layout extends Component {
-  render(): ReactNode {
-    return (
-      <>
-        <Header />
-        <Outlet />
-      </>
-    );
-  }
+function Layout() {
+  return (
+    <>
+      <Header />
+      <Outlet />
+    </>
+  );
 }
 
 export default Layout;

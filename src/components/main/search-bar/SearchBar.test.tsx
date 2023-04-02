@@ -2,9 +2,10 @@ import SearchBar from './SearchBar';
 import { it, describe } from 'vitest';
 import { render, screen } from '@testing-library/react';
 
-describe('SearchBar.tsx', () => {
-  it('Check if the App render very well', () => {
+describe('SearchBar component', () => {
+  it('renders the component', () => {
     render(<SearchBar />);
-    screen.debug();
+    const searchLabel = screen.getByText(/search/i);
+    expect(searchLabel).toBeInTheDocument();
   });
 });

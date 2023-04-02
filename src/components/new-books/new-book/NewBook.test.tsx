@@ -1,22 +1,22 @@
-import Card from './Card';
+import Book from './NewBook';
 import { it, describe } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
 describe('Card component', () => {
   const mockBook = {
-    id: 1,
-    price: 12,
+    price: '12',
     title: 'The Title',
     author: 'The Author',
-    cover_url: 'https://example.com/book-cover.jpg',
-    genre: 'The Genre',
-    language: 'eng',
-    created_date: '12.12.2022',
+    image: 'https://example.com/book-cover.jpg',
+    genre: ['The Genre'],
+    lang: 'eng',
+    date: '12.12.2022',
+    onStock: 'yes',
   };
 
   it('renders the book title, author', () => {
-    render(<Card key={mockBook.id} book={mockBook} />);
+    render(<Book key={1} book={mockBook} />);
     const title = screen.getByText('The Title');
     const author = screen.getByText('The Author');
     expect(title).toBeInTheDocument();
@@ -24,7 +24,7 @@ describe('Card component', () => {
   });
 
   it('renders the book cover image', () => {
-    render(<Card key={1} book={mockBook} />);
+    render(<Book key={1} book={mockBook} />);
     const image = screen.getByAltText('Book Cover');
     expect(image).toHaveAttribute('src', 'https://example.com/book-cover.jpg');
   });
