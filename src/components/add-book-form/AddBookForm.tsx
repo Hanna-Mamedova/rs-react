@@ -10,16 +10,38 @@ type AddBookFormProps = {
   onFormSubmit: (book: NewBook) => void;
 };
 
+interface FormValues {
+  title: string;
+  author: string;
+  price: string;
+  date: string;
+  lang: string;
+  genre: string[];
+  onStock: string;
+  image: FileList;
+}
+
 function AddBookForm(props: AddBookFormProps) {
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm();
+  } = useForm<FormValues>();
 
-  const onSubmit = (data) => {
-    props.onFormSubmit(data);
+  const onSubmit = (data: FormValues) => {
+    const { title, author, price, date, lang, genre, onStock, image } = data;
+    const newBook: NewBook = {
+      title,
+      author,
+      price,
+      date,
+      lang,
+      genre,
+      onStock,
+      image: URL.createObjectURL(image[0]),
+    };
+    props.onFormSubmit(newBook);
     reset();
   };
 
