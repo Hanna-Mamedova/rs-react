@@ -2,9 +2,9 @@ import { successData } from '../../components/notifications/notification-message
 import { NewBook } from 'models/card.model';
 import React, { Component } from 'react';
 
-import AddBookFormContainer from '../../components/add-book-form/AddBookFormContainer';
 import NewBooksContainer from '../../components/new-books/NewBooksContainer';
 import Notification from '../../components/notifications/Notification';
+import AddBookForm from '../../components/add-book-form/AddBookForm';
 
 import './Forms.css';
 
@@ -47,7 +47,8 @@ class Forms extends Component {
     return (
       <div className="forms">
         <h1>Add book</h1>
-        <AddBookFormContainer onFormSubmit={(book: NewBook) => this.hanleSubmit(book)} />
+        <AddBookForm />
+        {/* onFormSubmit={(book: NewBook) => this.hanleSubmit(book)} */}
         <NewBooksContainer newBooks={this.state.newBooks} />
         <Notification
           onClose={() => this.hideNotification()}
