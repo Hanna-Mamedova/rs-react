@@ -1,26 +1,21 @@
-import { Book } from 'models/card.model';
+import { Character } from 'models/card.model';
 
 import './Card.css';
 
 type CardProps = {
   key: number;
-  book: Book;
+  card: Character;
 };
 
 function Card(props: CardProps) {
   return (
     <div className="book-card" data-testid="card">
       <div className="book">
-        <img className="book__image" src={props.book.cover_url} alt="Book Cover" />
-        <h3 className="book__title">{props.book.title}</h3>
+        <img className="book__image" src={props.card.image} alt="Book Cover" />
+        <h3 className="book__title">{props.card.name}</h3>
         <div>
-          <p className="book__author">{props.book.author}</p>
-          <p className="book__price">
-            {props.book.price.toLocaleString('en-US', {
-              style: 'currency',
-              currency: 'USD',
-            })}
-          </p>
+          <p className="book__author">{props.card.status}</p>
+          <p className="book__price">{props.card.species}</p>
         </div>
       </div>
       <div className="button button-bord">

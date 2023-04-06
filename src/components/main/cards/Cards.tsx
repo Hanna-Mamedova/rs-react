@@ -1,14 +1,14 @@
-import { Book } from 'models/card.model';
+import { Character } from 'models/card.model';
 import Card from '../card/Card';
 
 import './Cards.css';
 
 type CardsProps = {
-  books: Book[];
+  results: Character[];
 };
 
 function Cards(props: CardsProps) {
-  const cards = props.books.map((book: Book) => <Card key={book.id} book={book} />);
+  const cards = props.results.map((card: Character) => <Card key={card.id} card={card} />);
   return <div className="cards">{cards}</div>;
 }
 
