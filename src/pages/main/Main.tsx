@@ -3,6 +3,8 @@ import Cards from '../../components/main/cards/Cards';
 import SearchBar from '../../components/main/search-bar/SearchBar';
 import { Character, Page } from 'models/card.model';
 import { SearchParams } from 'models/api.model';
+import { noDataYet } from '../../data/no-data';
+import NoData from '../../components/main/no-data/NoData';
 
 const SEARCH_VALUE_KEY = 'SAVE_SEARCH';
 const BASE_URL = 'https://rickandmortyapi.com/api/character';
@@ -21,25 +23,38 @@ function Main() {
     };
   });
 
-  const createSearchQuery = (params: SearchParams): URLSearchParams => {
+  useEffect(() => {
+    const storedData = localStorage.getItem(SEARCH_VALUE_KEY);
+    if (storedData) {
+      getSearchData({ name: storedData });
+    }
+  }, []);
+
+  const createSearchQuery = (params: SearchParams): string => {
     const queryParams = new URLSearchParams();
     for (const [key, value] of Object.entries(params)) {
-      queryParams.append(key, value);
+      if (value) queryParams.append(key, value);
     }
-    return queryParams;
+    const queryString = queryParams.toString();
+    return queryString;
   };
 
   const getSearchData = async (params: SearchParams) => {
-    const queryString = createSearchQuery(params).toString();
-    const response = await fetch(`${BASE_URL}/?${queryString}`);
-    const data: Page = await response.json();
-    setCharacters(data.results);
+    const queryString = createSearchQuery(params);
+    if (queryString) {
+      const response = await fetch(`${BASE_URL}/?${queryString}`);
+      const data: Page = await response.json();
+      setCharacters(data.results);
+    } else {
+      setCharacters([]);
+    }
   };
 
   return (
     <div>
       <SearchBar inputText={inputText} onChange={setInputText} onKeyDown={getSearchData} />
-      <Cards results={characters} />
+      {characters.length > 0 && <Cards results={characters} />}
+      {!characters.length && <NoData data={noDataYet} />}
     </div>
   );
 }
