@@ -1,30 +1,30 @@
-import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 import './SearchBar.css';
+import { SearchParams } from 'models/api.model';
 
-const SEARCH_VALUE_KEY = 'SAVE_SEARCH';
+interface SearchProps {
+  inputText: string;
+  onChange: React.Dispatch<React.SetStateAction<string>>;
+  onKeyDown: React.Dispatch<React.SetStateAction<SearchParams>>;
+}
 
-function SearchBar() {
-  const [inputText, setinputText] = useState(() => {
-    const saved = localStorage.getItem(SEARCH_VALUE_KEY) as string;
-    const initialValue = saved;
-    return initialValue || '';
-  });
-
-  useEffect(() => {
-    localStorage.setItem(SEARCH_VALUE_KEY, inputText);
-  });
-
+function SearchBar(props: SearchProps) {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    setinputText(e.target.value);
+    props.onChange(e.target.value);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      props.onKeyDown({ name: (e.target as HTMLInputElement).value });
+    }
   };
 
   return (
     <div className="search">
       <label htmlFor="search" className="search-label">
-        Search
+        Enter Character Name
       </label>
       <div className="input-wrap">
         <FontAwesomeIcon className="search-icon" icon={faMagnifyingGlass} />
@@ -32,10 +32,12 @@ function SearchBar() {
           id="search"
           type="text"
           className="search-input"
-          value={inputText}
+          value={props.inputText}
           onChange={(e) => handleInputChange(e)}
+          onKeyDown={(e) => handleKeyDown(e)}
         />
       </div>
+      <div className="search-help">For example: Rick or Morty...</div>
     </div>
   );
 }
