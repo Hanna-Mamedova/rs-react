@@ -15,7 +15,7 @@ function SearchBar(props: SearchProps) {
     props.onChange(e.target.value);
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>): void => {
     if (e.key === 'Enter') {
       props.onKeyDown({ name: (e.target as HTMLInputElement).value });
     }
