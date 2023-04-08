@@ -3,7 +3,7 @@ import Cards from '../../components/main/cards/Cards';
 import SearchBar from '../../components/main/search-bar/SearchBar';
 import { Character, Page } from 'models/card.model';
 import { SearchParams } from 'models/api.model';
-import { noDataYet } from '../../data/no-data';
+import { noDataLoading, noDataYet } from '../../data/no-data';
 import NoData from '../../components/main/no-data/NoData';
 
 const SEARCH_VALUE_KEY = 'SAVE_SEARCH';
@@ -16,6 +16,7 @@ function Main() {
     return initialValue || '';
   });
   const [characters, setCharacters] = useState<Character[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     return () => {
@@ -42,9 +43,14 @@ function Main() {
   const getSearchData = async (params: SearchParams) => {
     const queryString = createSearchQuery(params);
     if (queryString) {
+      setIsLoading(true);
+      setCharacters([]);
       const response = await fetch(`${BASE_URL}/?${queryString}`);
       const data: Page = await response.json();
-      setCharacters(data.results);
+      setTimeout(() => {
+        setIsLoading(false);
+        setCharacters(data.results);
+      }, 2000);
     } else {
       setCharacters([]);
     }
@@ -54,7 +60,8 @@ function Main() {
     <div>
       <SearchBar inputText={inputText} onChange={setInputText} onKeyDown={getSearchData} />
       {characters.length > 0 && <Cards results={characters} />}
-      {!characters.length && <NoData data={noDataYet} />}
+      {!characters.length && !isLoading && <NoData data={noDataYet} />}
+      {isLoading && <NoData data={noDataLoading} />}
     </div>
   );
 }
