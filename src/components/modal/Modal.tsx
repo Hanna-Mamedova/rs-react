@@ -54,19 +54,39 @@ function Modal({ open, id, onClose }: ModalProps) {
           }}
         >
           <div className="modal-container">
-            <h1>{data?.name}</h1>
             <button
               className="modal-close-btn"
               onClick={onClose as MouseEventHandler<HTMLButtonElement>}
             >
-              x
+              X
             </button>
+            <div>
+              <img src={data?.image} alt="Image" />
+            </div>
             <div className="modal-content">
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque magnam, quia eius
-                sunt cumque dignissimos deserunt temporibus distinctio eos rem quis. Assumenda
-                voluptatibus neque fugit aliquam beatae fuga saepe cupiditate.
-              </p>
+              <h1 className="modal-name">{data?.name}</h1>
+              <div className="modal-text">
+                <div className="modal-text__item">
+                  <span>Status: </span>
+                  {data?.status}
+                </div>
+                <div className="modal-text__item">
+                  <span>Species: </span>
+                  {data?.species}
+                </div>
+                <div className="modal-text__item">
+                  <span>Gender: </span>
+                  {data?.gender}
+                </div>
+                <div className="modal-text__item">
+                  <span>Origin: </span>
+                  {data?.origin.name}
+                </div>
+                <div className="modal-text__item">
+                  <span>Creation Date: </span>
+                  {data?.created.substring(0, 10)}
+                </div>
+              </div>
             </div>
           </div>
         </div>
