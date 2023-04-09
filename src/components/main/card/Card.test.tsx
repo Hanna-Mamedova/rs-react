@@ -4,28 +4,41 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
 describe('Card component', () => {
-  const mockBook = {
+  const mockCard = {
     id: 1,
-    price: 12,
-    title: 'The Title',
-    author: 'The Author',
-    cover_url: 'https://example.com/book-cover.jpg',
-    genre: 'The Genre',
-    language: 'eng',
-    created_date: '12.12.2022',
+    name: 'Rick',
+    status: 'Alive',
+    species: 'Human',
+    type: '',
+    gender: 'Male',
+    origin: {
+      name: 'Earth',
+      url: 'https://rickandmortyapi.com/api/location/1',
+    },
+    location: {
+      name: 'Earth',
+      url: 'https://rickandmortyapi.com/api/location/20',
+    },
+    image: 'https://rickandmortyapi.com/api/character/avatar/2.jpeg',
+    episode: [
+      'https://rickandmortyapi.com/api/episode/1',
+      'https://rickandmortyapi.com/api/episode/2',
+    ],
+    url: 'https://rickandmortyapi.com/api/character/2',
+    created: '2017-11-04T18:50:21.651Z',
   };
 
   it('renders the book title, author', () => {
-    render(<Card key={mockBook.id} book={mockBook} />);
-    const title = screen.getByText('The Title');
-    const author = screen.getByText('The Author');
-    expect(title).toBeInTheDocument();
-    expect(author).toBeInTheDocument();
+    render(<Card key={mockCard.id} card={mockCard} onClick={() => {}} />);
+    const name = screen.getByText('Rick');
+    const status = screen.getByText('Alive');
+    expect(name).toBeInTheDocument();
+    expect(status).toBeInTheDocument();
   });
 
   it('renders the book cover image', () => {
-    render(<Card key={1} book={mockBook} />);
-    const image = screen.getByAltText('Book Cover');
-    expect(image).toHaveAttribute('src', 'https://example.com/book-cover.jpg');
+    render(<Card key={1} card={mockCard} onClick={() => {}} />);
+    const image = screen.getByAltText('Card Cover');
+    expect(image).toHaveAttribute('src', 'https://rickandmortyapi.com/api/character/avatar/2.jpeg');
   });
 });

@@ -16,7 +16,7 @@ function Card({ card, onClick }: CardProps) {
   return (
     <div className="book-card" data-testid="card">
       <div className="book">
-        <img className="book__image" src={card.image} alt="Book Cover" />
+        <img className="book__image" src={card.image} alt="Card Cover" />
         <h3 className="book__title">{card.name}</h3>
         <div>
           <p className="book__author">{card.status}</p>
