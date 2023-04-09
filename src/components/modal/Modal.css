@@ -33,6 +33,7 @@
     background-color: transparent;
     border: none;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .modal-content {
