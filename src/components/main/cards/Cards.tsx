@@ -5,10 +5,13 @@ import './Cards.css';
 
 type CardsProps = {
   results: Character[];
+  onClick: (id: number) => void;
 };
 
-function Cards(props: CardsProps) {
-  const cards = props.results.map((card: Character) => <Card key={card.id} card={card} />);
+function Cards({ results, onClick }: CardsProps) {
+  const cards = results.map((card: Character) => (
+    <Card key={card.id} card={card} onClick={onClick} />
+  ));
   return <div className="cards">{cards}</div>;
 }
 

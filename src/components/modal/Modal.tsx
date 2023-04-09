@@ -7,12 +7,12 @@ type ModalOnCloseHandler = MouseEventHandler<HTMLDivElement> | MouseEventHandler
 
 interface ModalProps {
   open: boolean;
-  id: number | undefined;
+  id: number;
   onClose: ModalOnCloseHandler;
 }
 
 function Modal({ open, id, onClose }: ModalProps) {
-  const [data, setData] = useState<Character>();
+  const [data, setData] = useState<Character | null>();
 
   useEffect(() => {
     if (open) {
@@ -22,23 +22,29 @@ function Modal({ open, id, onClose }: ModalProps) {
     }
   }, [open]);
 
-  const getData = async () => {
-    try {
-      const response = await fetch(`${BASE_URL}/${id}`);
+  useEffect(() => {
+    const getData = async () => {
+      if (id) {
+        try {
+          const response = await fetch(`${BASE_URL}/${id}`);
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+
+          const data: Character = await response.json();
+          setData(data);
+        } catch (e) {
+          console.error('Error fetching data:', e);
+        }
       }
+    };
 
-      const data: Character = await response.json();
-      setData(data);
-    } catch (e) {
-      console.error('Error fetching data:', e);
-    }
-  };
+    getData();
+    return () => setData(null);
+  }, [id]);
 
   if (open) {
-    getData();
     return (
       <div className="overlay" onClick={onClose as MouseEventHandler<HTMLDivElement>}>
         <div
