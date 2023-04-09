@@ -30,6 +30,7 @@ function SearchBar(props: SearchProps) {
         <FontAwesomeIcon className="search-icon" icon={faMagnifyingGlass} />
         <input
           id="search"
+          role="search"
           type="text"
           className="search-input"
           value={props.inputText}
