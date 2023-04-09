@@ -2,7 +2,7 @@ import { NewBook } from 'models/card.model';
 import { useForm } from 'react-hook-form';
 
 import './AddBookForm.css';
-import { InputLength, isAfter, isPositive } from './validation/validations';
+import { InputLength, isAfter, isPositive } from './validations';
 
 const CHECKLIST = ['Fairy Tale', 'Fiction', 'Folklore', 'Drama', 'Poetry'];
 
