@@ -60,15 +60,18 @@
 
   }
 
-  .button-bord a {
+  .button-bord button {
     color: #9c254d;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
   }
 
-  .button-bord:hover a {
+  .button-bord:hover button {
     color: white;
   }
 
-  .button-bord:active a {
+  .button-bord:active button {
     color: #d23369;
   }
 
