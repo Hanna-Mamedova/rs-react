@@ -1,14 +1,17 @@
-import { Book } from 'models/card.model';
+import { Character } from 'models/card.model';
 import Card from '../card/Card';
 
 import './Cards.css';
 
 type CardsProps = {
-  books: Book[];
+  results: Character[];
+  onClick: (id: number) => void;
 };
 
-function Cards(props: CardsProps) {
-  const cards = props.books.map((book: Book) => <Card key={book.id} book={book} />);
+function Cards({ results, onClick }: CardsProps) {
+  const cards = results.map((card: Character) => (
+    <Card key={card.id} card={card} onClick={onClick} />
+  ));
   return <div className="cards">{cards}</div>;
 }
 

@@ -1,53 +1,92 @@
 import { it, describe } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import { Book } from 'models/card.model';
+import { Character } from 'models/card.model';
 import Cards from './Cards';
 
 describe('Cards component', () => {
-  const mockBooks: Book[] = [
+  const mockCards: Character[] = [
     {
       id: 1,
-      price: 12,
-      title: 'The Title 1',
-      author: 'The Author 1',
-      cover_url: 'https://example.com/book-cover-1.jpg',
-      genre: 'The Genre',
-      language: 'eng',
-      created_date: '12.12.2022',
+      name: 'Rick',
+      status: 'Alive',
+      species: 'Human',
+      type: '',
+      gender: 'Male',
+      origin: {
+        name: 'Earth',
+        url: 'https://rickandmortyapi.com/api/location/1',
+      },
+      location: {
+        name: 'Earth',
+        url: 'https://rickandmortyapi.com/api/location/20',
+      },
+      image: 'https://rickandmortyapi.com/api/character/avatar/2.jpeg',
+      episode: [
+        'https://rickandmortyapi.com/api/episode/1',
+        'https://rickandmortyapi.com/api/episode/2',
+      ],
+      url: 'https://rickandmortyapi.com/api/character/2',
+      created: '2017-11-04T18:50:21.651Z',
     },
     {
       id: 2,
-      price: 12,
-      title: 'The Title 2',
-      author: 'The Author 2',
-      cover_url: 'https://example.com/book-cover-2.jpg',
-      genre: 'The Genre',
-      language: 'eng',
-      created_date: '12.12.2022',
+      name: 'Morty',
+      status: 'Alive',
+      species: 'Human',
+      type: '',
+      gender: 'Male',
+      origin: {
+        name: 'Earth',
+        url: 'https://rickandmortyapi.com/api/location/1',
+      },
+      location: {
+        name: 'Earth',
+        url: 'https://rickandmortyapi.com/api/location/20',
+      },
+      image: 'https://rickandmortyapi.com/api/character/avatar/2.jpeg',
+      episode: [
+        'https://rickandmortyapi.com/api/episode/1',
+        'https://rickandmortyapi.com/api/episode/2',
+      ],
+      url: 'https://rickandmortyapi.com/api/character/2',
+      created: '2017-11-04T18:50:21.651Z',
     },
     {
       id: 3,
-      price: 12,
-      title: 'The Title 3',
-      author: 'The Author 3',
-      cover_url: 'https://example.com/book-cover-3.jpg',
-      genre: 'The Genre',
-      language: 'eng',
-      created_date: '12.12.2022',
+      name: 'Beth',
+      status: 'Alive',
+      species: 'Human',
+      type: '',
+      gender: 'Female',
+      origin: {
+        name: 'Earth',
+        url: 'https://rickandmortyapi.com/api/location/1',
+      },
+      location: {
+        name: 'Earth',
+        url: 'https://rickandmortyapi.com/api/location/20',
+      },
+      image: 'https://rickandmortyapi.com/api/character/avatar/2.jpeg',
+      episode: [
+        'https://rickandmortyapi.com/api/episode/1',
+        'https://rickandmortyapi.com/api/episode/2',
+      ],
+      url: 'https://rickandmortyapi.com/api/character/2',
+      created: '2017-11-04T18:50:21.651Z',
     },
   ];
 
   it('renders the correct number of cards', () => {
-    render(<Cards books={mockBooks} />);
+    render(<Cards results={mockCards} onClick={() => {}} />);
     const cards = screen.getAllByTestId('card');
     expect(cards).toHaveLength(3);
   });
 
   it('renders the cards with the correct book props', () => {
-    render(<Cards books={mockBooks} />);
+    render(<Cards results={mockCards} onClick={() => {}} />);
     const cards = screen.getAllByTestId('card');
-    expect(cards[0]).toHaveTextContent('The Title 1');
-    expect(cards[0]).toHaveTextContent('The Author 1');
-    expect(cards[0]).toHaveTextContent('$12');
+    expect(cards[0]).toHaveTextContent('Rick');
+    expect(cards[0]).toHaveTextContent('Alive');
+    expect(cards[0]).toHaveTextContent('Human');
   });
 });

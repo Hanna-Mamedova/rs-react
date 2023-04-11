@@ -1,0 +1,19 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding-top: 25px;
+}
+
+.content-image {
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    justify-content: center;
+    width: 100%;
+}
+
+.content-image img {
+    max-width: 800px;
+    max-height: 60vh;
+}

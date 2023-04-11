@@ -11,6 +11,15 @@ h1 {
     color: #c23446;
 }
 
+h2 {
+    text-align: center;
+    font-family: "Dosis", sans-serif;
+    font-size: 2rem;
+    margin: 0px;
+    font-weight: 600;
+    color: #c23446;
+}
+
 h3 {
     text-align: center;
     font-size: 1.2rem;
