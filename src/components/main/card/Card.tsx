@@ -23,8 +23,8 @@ function Card({ card, onClick }: CardProps) {
           <p className="book__price">{card.species}</p>
         </div>
       </div>
-      <div className="button button-bord">
-        <button onClick={handleClick}>View more</button>
+      <div onClick={handleClick} className="button button-bord">
+        <button>View more</button>
       </div>
     </div>
   );
