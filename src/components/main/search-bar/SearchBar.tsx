@@ -2,22 +2,23 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 import './SearchBar.css';
-import { SearchParams } from 'models/api.model';
+import { saveInput } from '../../../store/reducers/SearchTextSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import AppState from 'models/store.model';
 
-interface SearchProps {
-  inputText: string;
-  onChange: React.Dispatch<React.SetStateAction<string>>;
-  onKeyDown: React.Dispatch<React.SetStateAction<SearchParams>>;
-}
+function SearchBar() {
+  const dispatch = useDispatch();
+  const searchText = useSelector((state: AppState) => state.searchText);
 
-function SearchBar(props: SearchProps) {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    props.onChange(e.target.value);
+    const { value } = e.target;
+    dispatch(saveInput(value));
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>): void => {
     if (e.key === 'Enter') {
-      props.onKeyDown({ name: (e.target as HTMLInputElement).value });
+      const { value } = e.target as HTMLInputElement;
+      dispatch(saveInput(value));
     }
   };
 
@@ -33,7 +34,7 @@ function SearchBar(props: SearchProps) {
           role="search"
           type="text"
           className="search-input"
-          value={props.inputText}
+          value={searchText}
           onChange={(e) => handleInputChange(e)}
           onKeyDown={(e) => handleKeyDown(e)}
         />

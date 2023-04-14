@@ -13,11 +13,6 @@ import { BASE_URL } from '../../data/api-data';
 const SEARCH_VALUE_KEY = 'SAVE_SEARCH';
 
 function Main() {
-  const [inputText, setInputText] = useState(() => {
-    const saved = localStorage.getItem(SEARCH_VALUE_KEY) as string;
-    const initialValue = saved;
-    return initialValue || '';
-  });
   const [characters, setCharacters] = useState<Character[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
@@ -67,12 +62,6 @@ function Main() {
   );
 
   useEffect(() => {
-    return () => {
-      localStorage.setItem(SEARCH_VALUE_KEY, inputText);
-    };
-  });
-
-  useEffect(() => {
     const storedData = localStorage.getItem(SEARCH_VALUE_KEY);
     if (storedData) {
       getSearchData({ name: storedData });
@@ -86,7 +75,7 @@ function Main() {
 
   return (
     <div>
-      <SearchBar inputText={inputText} onChange={setInputText} onKeyDown={getSearchData} />
+      <SearchBar />
       {characters.length > 0 && <Cards results={characters} onClick={handleViewClick} />}
       {!characters.length && !isLoading && !error && <NoData data={noDataYet} />}
       {isLoading && <NoData data={noDataLoading} />}
