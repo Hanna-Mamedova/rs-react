@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 import './SearchBar.css';
-import { saveInput } from '../../../store/reducers/SearchTextSlice';
+import { saveInput } from '../../../store/reducers/searchTextSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectSearchText } from '../../../store/app.selectors';
 import { fetchCharacters } from '../../../utils/api';

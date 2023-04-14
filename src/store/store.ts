@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import searchTextReducer from './reducers/SearchTextSlice';
+import searchTextReducer from './reducers/searchTextSlice';
 import charactersReducer from './reducers/charactersSlice';
 
 const store = configureStore({
