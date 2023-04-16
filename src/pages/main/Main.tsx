@@ -9,6 +9,7 @@ import { noDataFound, noDataLoading, noDataYet } from '../../data/no-data';
 import { useSelector } from 'react-redux';
 import {
   selectAllCharacters,
+  selectCharacterById,
   selectCharactersError,
   selectCharactersLoading,
 } from '../../store/app.selectors';
@@ -17,9 +18,9 @@ function Main() {
   const characters = useSelector(selectAllCharacters);
   const isLoading = useSelector(selectCharactersLoading);
   const error = useSelector(selectCharactersError);
-
-  const [openModal, setOpenModal] = useState<boolean>(false);
   const [activeCardId, setActiveCardId] = useState<number>(0);
+  const [openModal, setOpenModal] = useState<boolean>(false);
+  const activeCharacter = useSelector(selectCharacterById(activeCardId));
 
   const handleViewClick = (id: number): void => {
     setActiveCardId(id);
@@ -33,7 +34,7 @@ function Main() {
       {!characters.length && !isLoading && !error && <NoData data={noDataYet} />}
       {isLoading && <NoData data={noDataLoading} />}
       {error && <NoData data={noDataFound} />}
-      <Modal open={openModal} id={activeCardId} onClose={() => setOpenModal(false)} />
+      <Modal open={openModal} character={activeCharacter} onClose={() => setOpenModal(false)} />
     </div>
   );
 }
