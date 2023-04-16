@@ -2,24 +2,18 @@ import { NewBook } from 'models/card.model';
 import { useForm } from 'react-hook-form';
 
 import './AddBookForm.css';
-import { InputLength, isAfter, isPositive } from './validations';
+import { InputLength, isAfter, isPositive } from '../../utils/addBookFormValidations';
+import { AppDispatch } from 'store/store';
+import { useDispatch } from 'react-redux';
+import { saveFormValues } from '../../store/reducers/formSlice';
+import { FormValues } from 'models/form.model';
+import { addNewBook } from '../../store/reducers/newBooksSlice';
 
 const CHECKLIST = ['Fairy Tale', 'Fiction', 'Folklore', 'Drama', 'Poetry'];
 
 type AddBookFormProps = {
-  onFormSubmit: (book: NewBook) => void;
+  onFormSubmit: () => void;
 };
-
-interface FormValues {
-  title: string;
-  author: string;
-  price: string;
-  date: string;
-  lang: string;
-  genre: string[];
-  onStock: string;
-  image: FileList;
-}
 
 function AddBookForm(props: AddBookFormProps) {
   const {
@@ -28,6 +22,8 @@ function AddBookForm(props: AddBookFormProps) {
     reset,
     formState: { errors },
   } = useForm<FormValues>();
+
+  const dispatch = useDispatch<AppDispatch>();
 
   const onSubmit = (data: FormValues) => {
     const { title, author, price, date, lang, genre, onStock, image } = data;
@@ -41,7 +37,9 @@ function AddBookForm(props: AddBookFormProps) {
       onStock,
       image: URL.createObjectURL(image[0]),
     };
-    props.onFormSubmit(newBook);
+    dispatch(saveFormValues(newBook));
+    dispatch(addNewBook(newBook));
+    props.onFormSubmit();
     reset();
   };
 
