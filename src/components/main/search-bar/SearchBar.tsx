@@ -7,22 +7,29 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectSearchText } from '../../../store/app.selectors';
 import { fetchCharacters } from '../../../utils/api';
 import { AppDispatch } from 'store/store';
+import { useEffect, useState } from 'react';
 
 function SearchBar() {
   const dispatch = useDispatch<AppDispatch>();
+  const [inputValue, setInputValue] = useState('');
   const searchText = useSelector(selectSearchText);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { value } = e.target;
-    dispatch(saveInput(value));
+    setInputValue(value);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>): void => {
     if (e.key === 'Enter') {
       const { value } = e.target as HTMLInputElement;
+      dispatch(saveInput(value));
       dispatch(fetchCharacters({ name: value }));
     }
   };
+
+  useEffect(() => {
+    if (searchText) setInputValue(searchText);
+  }, [searchText]);
 
   return (
     <div className="search">
@@ -36,7 +43,7 @@ function SearchBar() {
           role="search"
           type="text"
           className="search-input"
-          value={searchText}
+          value={inputValue}
           onChange={(e) => handleInputChange(e)}
           onKeyDown={(e) => handleKeyDown(e)}
         />
