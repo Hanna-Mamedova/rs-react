@@ -3,7 +3,7 @@ import { FormValues } from './form.model';
 import { NewBook } from './card.model';
 
 export default interface AppState {
-  searchText: '';
+  searchText: string;
   characters: CharactersState;
   addBookForm: FormValues;
   newBooks: NewBook[];
